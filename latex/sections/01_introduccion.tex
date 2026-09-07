@@ -1,0 +1,30 @@
+% ============================================================
+% 01_introduccion.tex
+% Responsable: Integrante X
+% ============================================================
+
+\section{Introducción}
+
+% TODO: Contextualizar el problema de sincronización en sistemas multicore embebidos.
+% Puntos clave a cubrir:
+%   - Problema de la sincronización y exclusión mutua en sistemas embebidos multicore
+%   - Limitaciones de los mecanismos software actuales (spin-locks, mutexes)
+%   - Consumo energético como restricción crítica en sistemas embebidos
+%   - Motivación para un enfoque hardware (C-Lock)
+
+\subsection{Contexto}
+
+Los sistemas embebidos multicore presentan el desafío de coordinar el acceso concurrente
+a recursos compartidos. Los mecanismos de sincronización basados en software, como
+\textit{spin-locks} y \textit{mutexes}, implican un costo energético significativo debido
+a la espera activa (\textit{busy-waiting}).
+
+\subsection{Motivación}
+
+% TODO: Ampliar con datos cuantitativos del paper (overhead energético de spin-locks, etc.)
+
+\subsection{Objetivo del Informe}
+
+Este informe analiza el mecanismo C-Lock propuesto en \cite{clock2023}, describiendo
+su arquitectura, sus ventajas sobre enfoques software, y el diseño de nuestra
+simulación.

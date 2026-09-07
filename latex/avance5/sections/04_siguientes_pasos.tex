@@ -1,0 +1,28 @@
+% ============================================================
+% 04_siguientes_pasos.tex — Siguientes pasos
+% ============================================================
+
+\section{Siguientes Pasos}
+
+Para la semana 6 tenemos planeado:
+
+\begin{enumerate}
+    \item \textbf{Implementar la lógica del simulador}: completar
+          \texttt{c\_lock\_manager.c} y \texttt{core.c} con la lógica real de
+          sincronización y clock-gating, y validar que el comportamiento sea
+          correcto antes de medir nada.
+
+    \item \textbf{Agregar escenario spin-lock}: una vez que C-Lock funcione,
+          implementar un escenario equivalente con spin-lock clásico para poder
+          comparar el consumo de energía entre ambos mecanismos.
+
+    \item \textbf{Arrancar con el análisis de Selfie}: necesitamos revisar el
+          código de Selfie para entender qué partes habría que modificar para
+          soportar C-Lock — o al menos una versión simplificada. Esto lo
+          dejamos para la semana 6 porque primero queríamos tener claro el
+          paper.
+
+    \item \textbf{Redactar el informe final}: con la base que tenemos en
+          \texttt{latex/sections/}, ir completando las secciones de arquitectura
+          y simulación a medida que avancemos con el código.
+\end{enumerate}

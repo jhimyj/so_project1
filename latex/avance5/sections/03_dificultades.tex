@@ -1,0 +1,21 @@
+% ============================================================
+% 03_dificultades.tex — Dificultades encontradas
+% ============================================================
+
+\section{Dificultades Encontradas}
+
+La principal dificultad fue entender el mecanismo de \textit{clock-gating} a
+nivel de hardware. El paper lo describe desde el punto de vista del diseño
+digital, asumiendo que el lector conoce cómo funciona la distribución de reloj
+en un chip. Nos tomó un rato entender que detener el reloj de un core no es lo
+mismo que apagarlo — el estado se preserva, solo deja de ejecutar instrucciones.
+Revisamos algo de documentación complementaria para aclararlo.
+
+Por el lado de la simulación, el desafío fue pensar cómo representar el
+clock-gating en software. No existe una forma directa de ``detener'' un hilo
+sin consumir CPU; la alternativa que encontramos es usar
+\texttt{pthread\_cond\_wait}, que bloquea el hilo sin busy-waiting. Es una
+aproximación, pero creemos que captura bien la idea de que el core deja de
+ejecutar mientras espera el lock. Queda pendiente implementarlo y validarlo.
+
+% TODO: agregar si el equipo tuvo otras dificultades específicas

@@ -1,0 +1,57 @@
+% ============================================================
+% 03_arquitectura.tex
+% Responsable: Integrante X
+% ============================================================
+
+\section{Análisis de Arquitectura}
+
+\subsection{Visión general}
+
+% TODO: Insertar diagrama de arquitectura C-Lock (figura del paper o redibujada)
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/arquitectura_clock.pdf}
+%     \caption{Arquitectura del sistema C-Lock.}
+%     \label{fig:arch}
+% \end{figure}
+
+\subsection{Flujo de operación}
+
+El flujo de ejecución cuando un core intenta adquirir un lock es el siguiente:
+
+\begin{enumerate}
+    \item El core ejecuta \texttt{BEGIN\_C\_LOCK(lock\_id)}.
+    \item El \textit{Conflict Checker} del \textit{Pool\_i} correspondiente consulta
+          al C-LockManager si el lock está ocupado.
+    \item Si existe conflicto: el clock-gating se activa y el core se suspende.
+    \item Cuando el lock se libera (\texttt{END\_C\_LOCK}), el C-LockManager notifica
+          al core en espera y reactiva su reloj.
+    \item El core retoma la ejecución y entra a la sección crítica.
+\end{enumerate}
+
+\subsection{Decisiones de diseño relevantes}
+
+% TODO: Analizar trade-offs del diseño:
+%   - ¿Por qué hardware y no software?
+%   - ¿Por qué clock-gating y no power-gating?
+%   - Granularidad de locks (por lock_id vs global)
+%   - Overhead de área hardware (costo en transistores/área)
+
+\subsection{Comparación con otros mecanismos}
+
+\begin{table}[H]
+    \centering
+    \caption{Comparación de mecanismos de sincronización.}
+    \begin{tabular}{lccc}
+        \toprule
+        Mecanismo       & Consumo energético & Overhead SW & Complejidad HW \\
+        \midrule
+        Spin-lock       & Alto               & Bajo        & Ninguna        \\
+        Mutex (OS)      & Medio              & Alto        & Ninguna        \\
+        C-Lock          & Bajo               & Mínimo      & Moderada       \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:comparacion}
+\end{table}
+
+% TODO: Completar tabla con datos cuantitativos del paper.

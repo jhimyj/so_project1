@@ -1,0 +1,68 @@
+% ============================================================
+% preamble.tex — Configuración compartida para todo el informe
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+% Fuente
+\usepackage{lmodern}
+
+% Matemáticas
+\usepackage{amsmath, amssymb}
+
+% Figuras y tablas
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% Código fuente
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue!80!black}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red!70!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{black!30},
+    backgroundcolor=\color{gray!5},
+    captionpos=b,
+    extendedchars=true,
+    inputencoding=utf8,
+}
+
+% Hipervínculos
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue!70!black,
+    urlcolor=blue!80!black,
+}
+
+% Bibliografía: cargar en cada main.tex que lo necesite con:
+%   \usepackage[backend=bibtex, style=ieee]{biblatex}
+%   \addbibresource{refs.bib}
+
+% Encabezado y pie de página
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small Sistemas Operativos — Avance 5}
+\lhead{\small C-Lock}
+\rfoot{\thepage}
+
+% Misc
+\usepackage{parskip}
+\setlength{\parindent}{0pt}

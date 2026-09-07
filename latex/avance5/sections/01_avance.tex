@@ -1,0 +1,63 @@
+% ============================================================
+% 01_avance.tex — Avance realizado esta semana
+% Responsable: TODO (asignar integrante)
+% ============================================================
+
+\section{Avance Realizado}
+
+\subsection{Lectura y comprensión del paper}
+
+Leímos el paper completo de C-Lock. Lo que más nos costó entender al principio
+fue cómo el hardware puede detener el reloj de un core sin que este pierda su
+estado — el mecanismo de \textit{clock-gating} no es tan directo como parece
+desde el software. Una vez que lo vimos con más detalle, identificamos los
+componentes principales:
+
+\begin{itemize}
+    \item \textbf{C-LockManager}: el componente central. Tiene un árbitro que
+          decide quién accede al lock, un contador global de locks activos, y
+          un pool por cada core.
+    \item \textbf{Pool\_i / Conflict Checker}: cada core tiene su propio pool
+          con un \textit{Conflict Checker} que detecta si hay conflicto para
+          un lock dado y activa el clock-gating si corresponde.
+    \item \textbf{Interfaz SW/HW}: el programador usa tres macros —
+          \texttt{ADD\_ITEM(id)}, \texttt{BEGIN\_C\_LOCK(id)} y
+          \texttt{END\_C\_LOCK(id)} — para interactuar con el hardware.
+\end{itemize}
+
+Lo interesante es que desde el software se ve casi igual que un mutex clásico,
+pero por debajo el hardware hace todo el trabajo de sincronización y además
+apaga el reloj del core mientras espera, ahorrando energía.
+
+\subsection{Organización del repositorio}
+
+Creamos el repositorio en GitHub y lo organizamos en dos carpetas principales:
+
+\begin{itemize}
+    \item \texttt{latex/}: contiene el informe dividido en secciones separadas,
+          una por tema, para que cada integrante pueda trabajar su parte sin
+          generar conflictos en git.
+    \item \texttt{sim/}: contiene el esqueleto de la simulación en C, con
+          headers en \texttt{include/} y fuentes en \texttt{src/}.
+\end{itemize}
+
+\subsection{Esqueleto de la simulación en C}
+
+Definimos la arquitectura del simulador y escribimos el esqueleto inicial.
+Los módulos que tenemos son:
+
+\begin{itemize}
+    \item \texttt{c\_lock.h}: tipos y constantes compartidas
+          (\texttt{CoreState}, modelo de energía, tamaños máximos).
+    \item \texttt{c\_lock\_manager.h/.c}: gestor central — maneja la tabla de
+          locks, las colas de espera y notifica a los cores cuando el lock
+          queda libre.
+    \item \texttt{core.h/.c}: representa un core del procesador; el diseño
+          contempla usar \texttt{pthread\_cond\_wait} para emular el clock-gating
+          sin busy-waiting.
+    \item \texttt{benchmark.c}: estructura del escenario de prueba (N cores,
+          1 lock compartido); la lógica interna está pendiente de implementar.
+\end{itemize}
+
+El esqueleto compila sin errores. La implementación de la lógica de
+sincronización está en progreso y es el foco principal para la semana 6.

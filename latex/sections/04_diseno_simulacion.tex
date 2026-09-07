@@ -1,0 +1,43 @@
+% ============================================================
+% 04_diseno_simulacion.tex
+% Responsable: Integrante X
+% ============================================================
+
+\section{Diseño de la Simulación}
+
+\subsection{Objetivo}
+
+Implementar una simulación funcional de C-Lock en Python que permita:
+\begin{itemize}
+    \item Modelar múltiples cores accediendo a locks compartidos.
+    \item Simular el mecanismo de clock-gating (suspensión/reanudación de cores).
+    \item Medir el consumo energético simulado vs. un spin-lock clásico.
+    \item Reproducir experimentos similares a los del paper.
+\end{itemize}
+
+\subsection{Componentes del simulador}
+
+\begin{itemize}
+    \item \textbf{\texttt{Core}}: Representa un core del procesador. Puede estar en estado
+          \textit{running} o \textit{gated} (clock detenido).
+    \item \textbf{\texttt{CLockManager}}: Gestiona el estado global de todos los locks y
+          coordina los Conflict Checkers.
+    \item \textbf{\texttt{Pool}}: Contiene los Conflict Checkers de un core.
+    \item \textbf{\texttt{ConflictChecker}}: Detecta conflictos para un lock específico.
+    \item \textbf{\texttt{Benchmark}}: Lanza múltiples cores ejecutando secciones críticas
+          y mide métricas.
+\end{itemize}
+
+\subsection{Modelo de energía}
+
+% TODO: Definir modelo de energía:
+%   - Ciclos activos: costo = E_activo por ciclo
+%   - Ciclos en clock-gating: costo = E_gated por ciclo (E_gated << E_activo)
+%   - Comparar con spin-lock: core activo durante toda la espera
+
+\subsection{Escenarios de prueba}
+
+% TODO: Definir benchmarks a simular:
+%   - N cores, 1 lock compartido (alta contención)
+%   - N cores, M locks (baja contención)
+%   - Comparar C-Lock vs spin-lock en ambos escenarios

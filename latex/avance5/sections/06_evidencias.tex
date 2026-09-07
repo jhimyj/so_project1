@@ -1,0 +1,66 @@
+% ============================================================
+% 06_evidencias.tex — Evidencias del proceso
+% (Tiene mayor peso en la evaluación según las indicaciones)
+% ============================================================
+
+\section{Evidencias del Proceso}
+
+\subsection{Estructura del repositorio}
+
+A continuación se muestra la estructura del repositorio al final de esta semana:
+
+\begin{lstlisting}[language=bash, caption={Estructura del repo en git.}]
+so_project1/
+  latex/
+    preamble.tex
+    refs.bib
+    figures/
+    avance5/        <- Este informe
+      main.tex
+      sections/
+    sections/       <- Informe final (en construccion)
+  sim/
+    Makefile
+    include/
+      c_lock.h
+      c_lock_manager.h
+      core.h
+    src/
+      c_lock_manager.c
+      core.c
+      benchmark.c
+\end{lstlisting}
+
+\subsection{Diagrama de arquitectura C-Lock}
+
+% TODO: Incluir diagrama del paper o uno propio redibujado.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.85\textwidth]{../../latex/figures/arquitectura_clock.pdf}
+%     \caption{Arquitectura de C-Lock (adaptado del paper).}
+% \end{figure}
+
+\textit{(Diagrama pendiente — se incluirá en el siguiente avance.)}
+
+\subsection{Extracto del código — Header principal}
+
+% TODO: pegar aquí el header c_lock.h como evidencia de avance en código.
+
+\begin{lstlisting}[language=C, caption={c\_lock.h — tipos y constantes del simulador.}]
+/* c_lock.h - Tipos compartidos del simulador C-Lock */
+#ifndef C_LOCK_H
+#define C_LOCK_H
+
+#define MAX_CORES    16
+#define MAX_LOCKS    64
+#define MAX_WAITERS  MAX_CORES
+
+typedef enum { RUNNING, GATED } CoreState;
+
+typedef struct { int owner; int waiters[MAX_WAITERS]; int nwaiters; } LockEntry;
+typedef struct { int core_id; CoreState state; long cycles_active; long cycles_gated; } Core;
+
+#endif
+\end{lstlisting}
+
+% TODO: agregar capturas de pantalla, apuntes del paper, diagramas propios, etc.

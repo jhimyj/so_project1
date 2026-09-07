@@ -1,0 +1,56 @@
+% ============================================================
+% 02_resumen_paper.tex
+% Responsable: Integrante X
+% ============================================================
+
+\section{Resumen del Paper}
+
+\subsection{Problema abordado}
+
+% TODO: Describir el problema exacto que resuelve C-Lock.
+% - Overhead energético de busy-waiting en spin-locks
+% - El procesador no puede apagarse mientras espera el lock
+
+\subsection{Propuesta: C-Lock}
+
+C-Lock es un mecanismo hardware de sincronización que utiliza \textit{clock-gating} para
+detener el reloj de los cores que esperan un lock, reduciendo el consumo energético sin
+degradar el rendimiento.
+
+La idea central es que, en lugar de que un core ejecute instrucciones en bucle esperando
+un lock, el hardware detecta el conflicto y desactiva el reloj del core hasta que el
+recurso esté disponible.
+
+\subsection{Componentes principales}
+
+\begin{itemize}
+    \item \textbf{C-LockManager:} Componente central. Contiene el árbitro, el contador
+          global y los \textit{pools}.
+    \item \textbf{Árbitro (Arbiter):} Gestiona el orden de acceso a los locks.
+    \item \textbf{Contador global (Global Counter):} Registro compartido para tracking
+          de locks activos.
+    \item \textbf{Pool\_i:} Un pool por core, contiene los \textit{Conflict Checkers}.
+    \item \textbf{Conflict Checker:} Detecta si existe conflicto para un lock dado y
+          activa el clock-gating si es necesario.
+\end{itemize}
+
+\subsection{Interfaz software-hardware}
+
+El programador usa tres macros para interactuar con C-Lock:
+
+\begin{lstlisting}[language=C, caption={Macros de C-Lock}]
+ADD_ITEM(lock_id);        // Registrar lock al inicio del programa
+BEGIN_C_LOCK(lock_id);    // Adquirir lock (puede gatillar clock-gating)
+END_C_LOCK(lock_id);      // Liberar lock
+\end{lstlisting}
+
+\subsection{Evaluación y resultados}
+
+% TODO: Completar con los resultados del paper.
+% - Benchmarks usados: STAMP, MiBench, TSM
+% - Reducción de consumo energético reportada
+% - Impacto en rendimiento (speedup / overhead)
+
+Los autores evaluaron C-Lock usando los benchmarks \textit{STAMP}, \textit{MiBench}
+y \textit{TSM}, reportando una reducción significativa en el consumo energético
+comparado con spin-locks clásicos, con un impacto mínimo en el rendimiento.
