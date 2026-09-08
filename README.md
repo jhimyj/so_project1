@@ -4,9 +4,9 @@ Proyecto de Sistemas Operativos basado en el paper:
 > *C-Lock: An Energy-Efficient Hardware Synchronization Method for Multicore Embedded Systems*, IEEE Transactions on Computers.
 
 ## Integrantes
-- Integrante 1
-- Integrante 2
-- Integrante 3
+- Jhimy Delgado Bazan
+- Yacira Nicol Campoverde
+- Frans Trujillo Flores
 
 ## Estructura del repositorio
 
